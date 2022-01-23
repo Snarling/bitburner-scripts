@@ -5,7 +5,7 @@ export let main=async ns=>{
     for (let entry of Object.entries(shorthand)) str=str.replaceAll(entry[k],entry[v]);
     return str;
   }
-  let box=createBox("CSS Editor", `<button>Load from File</button><button>Load from Page</button><button>Save to File</button><button>Save to Page</button><div class=resizer style="min-width:509px;height:300px"><textarea spellcheck=false></textarea></div><button>Load Theme from Game</button><button>Save Theme to Game</button><button>Minify</button><button>Beautify</button>`),
+  let box=createBox("CSS Editor", `<button>Load from File</button><button>Load from Page</button><button>Save to File</button><button>Save to Page</button><div class=resizer style="min-width:511px;height:300px"><textarea spellcheck=false></textarea></div><button>Load Theme from Game</button><button>Save Theme to Game</button><button>Minify</button><button>Beautify</button>`),
     pageCSS=doc.querySelector(`#boxCSS`),
     textArea=box.querySelector('textarea');
   let events=[
