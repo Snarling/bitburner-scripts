@@ -7,7 +7,7 @@ Each script also shows the ram cost for using the script, as well as the script 
 <img src=https://user-images.githubusercontent.com/84951833/150685207-26819230-348d-40ce-aeb6-3d987b8a94d2.png width=250px align=left>Lightweight HTML+CSS draggable custom content boxes. 
 
 See [separate documentation page](box/README.md) for more details.<br clear=both> 
-### deepestScan.js
+### [deepestScan.js](https://github.com/Snarling/bitburner-scripts/blob/main/deepestScan.js)
 <img src=https://user-images.githubusercontent.com/84951833/150685593-772866e3-8386-4f0e-a5bb-5a78ebf36a76.png height=300px align=left>Ram cost: 1.85GB - File size: 1.774kb
  
 Self-contained script that prints out a full map of the network hierarchy to the terminal, with color coding and click-to-connect functionality.
