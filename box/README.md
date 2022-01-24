@@ -13,7 +13,7 @@ The main file which provides functionality for creating new boxes to hold your c
 ### Cost
 No import cost. File size is 4.3KB.
 ### Exported Functions
-#### `createBox(title,mainContent,extraClasses)`
+#### `createBox(title, mainContent, ...extraClasses)`
 #### `confirm(text)`
 #### `prompt(text)`
 #### `select(text, options)`
@@ -26,6 +26,20 @@ No import cost. File size is 4.3KB.
 A .js file containing a single export which is the css content. Imported by /box/box.js and can be edited easily using cssEdit.js.
 ### Cost
 No import cost. File size is 2.49KB.
+### Provided Classes
+#### Reserved Classes
+Reserved classes include
+- .box
+- .box .title
+- .box .close
+- .box .toggle
+
+These are used for the main layout of the box and use of these class names inside of mainContent or when adding content with [box.log](#boxlogtexttimestampelementboxqueryselectorlog) should be avoided.
+#### .prompt
+#### .resizer
+#### .scroller
+#### .g2
+
 ## [cssEdit.js](cssEdit.js)
 A script which creates a box with controls that allow editing and testing of CSS styles and ingame theme.
 ### Cost
