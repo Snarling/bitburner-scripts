@@ -8,31 +8,100 @@ Lightweight JS+HTML+CSS draggable custom content boxes.
 - [cssEdit.js](#csseditjs) (Recommended)
 - [Other Example Files](#otherexamplefiles)
   - [promptExamples.js](#promptexamplesjs) 
-## [/box/box.js](box.js)
+# [/box/box.js](box.js)
 The main file which provides functionality for creating new boxes to hold your custom content. It also provides functions for creating various prompts and alerts using premade templates.
-### Cost
+## Cost
 No import cost. File size is 4.3KB.
-### Exported Functions
-#### `createBox(title, mainContent, ...extraClasses)`
+## Exported Functions
+### `createBox(title, mainContent, ...extraClasses)`
 The core of box's functionality, this creates a draggable box with the provided title and filled with whatever mainContent is provided.
-##### Parameters
-- `title`: A string containing the titlebar text.
-- `mainContent`: The main html content which is included in the body of the created box.
-- `extraClasses`: Any additional arguments will be treated as extra classes to add to the main box container. The only included extra class is [.prompt](#prompt).
-#### `confirm(text)`
-#### `prompt(text)`
-#### `select(text, options)`
-#### `alert(text)`
-### Additional member functions of box elements
-#### `box.addLogDiv(width)`
-#### `box.log(text, timestamp, element=box.querySelector(".log))`
-#### `box.stripTitleButtons()`
-## [/box/css.js](css.js)
+#### Parameters
+- `title`: A string containing the titlebar text content.
+- `mainContent`: A string containing the main html or text content which is included in the body of the created box.
+- `extraClasses`: Any additional arguments will be treated as extra classes to add to the main box container. The only included extra class is ["prompt"](#prompt).
+#### Return value
+The box element, which is an [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element) object with some [additional member functions](additionalmemberfunctionsofboxelements).
+#### Example
+```js
+createBox("World Greeter","Hello World");
+```
+![image](https://user-images.githubusercontent.com/84951833/150745696-3b9a521c-927a-4912-a0f5-e48569833530.png)
+
+Resulting HTML:
+```html
+<div class="box" style="z-index: 9001; left: 853px; top: 478px;">
+  <div class="title">
+    <span>World Greeter</span>
+    <a class="toggle">🗕</a>
+    <a class="close">✖</a>
+  </div>
+  Hello, world!
+</div>
+```
+### `confirm(text)`
+Creates a yes/no confirmation prompt which can be answered using the buttons or by using keyboard y/n. The rest of the screen is dimmed to grab the player's attention until answered.
+#### Parameters
+- `text`: A string containing the html or text content of the prompt question.
+#### Return value
+A promise which resolves to `true` or `false` depending on user selection when the prompt is answered.
+#### Example
+```js
+let answer = await confirm("Is this documentation helpful?");
+console.log(answer) //true or false depending on answer
+```
+![image](https://user-images.githubusercontent.com/84951833/150747210-80014cb2-adbb-4af5-91eb-0c7bfd5f4a5b.png)
+
+Resulting HTML:
+```html
+<div class="box prompt" style="z-index: 9001; left: 469px; top: 459px;">
+  <div class="title">
+    <span>Confirmation Prompt</span>
+  </div>
+  <center>Is this documentation helpful?</center>
+  <div class="g2">
+    <button><u>Y</u>es</button>
+    <button><u>N</u>o</button>
+  </div>
+</div>
+```
+### `prompt(text)`
+Creates an input prompt which can be submitted with the enter button or the submit button. The rest of the screen is dimmed to grab the player's attention until answered.
+#### Parameters
+- `text`: A string containing the html or text content of the prompt question.
+#### Return value
+A promise which resolves to the string entered into the input field when the prompt is submitted.
+#### Example
+```js
+let name = await prompt("What is your name?");
+console.log(name);
+```
+![image](https://user-images.githubusercontent.com/84951833/150748325-2dc40501-926c-47d4-94f7-07b609c5c4d1.png)
+
+Resulting HTML:
+```html
+<div class="box prompt" style="z-index: 9001; left: 759px; top: 459px;">
+  <div class="title">
+    <span>Input Prompt</span>
+  </div>
+  <center>What is your name?</center>
+  <div class="g2">
+    <input>
+    <button>Submit</button>
+  </div>
+</div>
+```
+### `select(text, options)`
+### `alert(text)`
+## Additional member functions of box elements
+### `box.addLogDiv(width)`
+### `box.log(text, timestamp, element=box.querySelector(".log))`
+### `box.stripTitleButtons()`
+# [/box/css.js](css.js)
 A .js file containing a single export which is the css content. Imported by /box/box.js and can be edited easily using cssEdit.js.
-### Cost
+## Cost
 No import cost. File size is 2.49KB.
-### Provided Classes
-#### Reserved Classes
+## Provided Classes
+### Reserved Classes
 Reserved classes include
 - .box
 - .box .title
@@ -40,12 +109,12 @@ Reserved classes include
 - .box .toggle
 
 These are used for the main layout of the box and use of these class names inside of mainContent or when adding content with [box.log](#boxlogtext-timestamp-elementboxqueryselectorlog) should be avoided.
-#### .prompt
-#### .resizer
-#### .scroller
-#### .g2
+### .prompt
+### .resizer
+### .scroller
+### .g2
 
-## [cssEdit.js](cssEdit.js)
+# [cssEdit.js](cssEdit.js)
 A script which creates a box with controls that allow editing and testing of CSS styles and ingame theme.
-### Cost
+## Cost
 1.6GB RAM cost. File size is 1.91KB.
