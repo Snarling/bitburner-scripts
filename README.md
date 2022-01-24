@@ -1,6 +1,11 @@
 # bitburner-scripts
 Various ingame scripts for the game Bitburner, which is available for free on steam or at https://danielyxie.github.io/bitburner/
 
+#### Sections:
+- [box](#box)
+- [deepestScan.js](#deepestscanjs)
+- [unlock.js](#unlockjs)
+
 ### [box](https://github.com/Snarling/bitburner-scripts/tree/main/box)
 <img src=https://user-images.githubusercontent.com/84951833/150685207-26819230-348d-40ce-aeb6-3d987b8a94d2.png width=250px align=left>Lightweight JS+HTML+CSS draggable custom content boxes. 
 
