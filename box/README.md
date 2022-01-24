@@ -34,7 +34,7 @@ Reserved classes include
 - .box .close
 - .box .toggle
 
-These are used for the main layout of the box and use of these class names inside of mainContent or when adding content with [box.log](#boxlogtexttimestampelementboxqueryselectorlog) should be avoided.
+These are used for the main layout of the box and use of these class names inside of mainContent or when adding content with [box.log](#boxlogtext-timestamp-elementboxqueryselectorlog) should be avoided.
 #### .prompt
 #### .resizer
 #### .scroller
