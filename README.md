@@ -19,4 +19,4 @@ Note that React does not preserve the additional printed content when navigating
 ### [unlock.js](https://github.com/Snarling/bitburner-scripts/blob/main/unlock.js)
 Ram cost: 2.1GB - File size: 171B
 
-An extremely minified script to unlock all servers. Will open any ports you can open, and root and servers that have enough ports open for root access.
+An extremely minified script to unlock all servers. Will open any ports you can open, and root any servers that have enough ports open for root access.
