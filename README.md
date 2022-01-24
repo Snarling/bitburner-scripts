@@ -16,7 +16,7 @@ See [separate documentation page](box/README.md) for more details.<br clear=both
 Self-contained script that prints out a full map of the network server hierarchy to the terminal, with color coding and click-to-connect functionality.
 
 Note that React does not preserve the additional printed content when navigating away from the terminal and back, so in this case the script needs to be re-ran to access the links again.<br clear=both>
-### unlock.js
+### [unlock.js](https://github.com/Snarling/bitburner-scripts/blob/main/unlock.js)
 Ram cost: 2.1GB - Ingame file size: 171B
 
 An extremely minified script to unlock all servers. Will open any ports you can open, and root and servers that have enough ports open for root access.
