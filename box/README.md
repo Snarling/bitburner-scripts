@@ -14,6 +14,11 @@ The main file which provides functionality for creating new boxes to hold your c
 No import cost. File size is 4.3KB.
 ### Exported Functions
 #### `createBox(title, mainContent, ...extraClasses)`
+The core of box's functionality, this creates a draggable box with the provided title and filled with whatever mainContent is provided.
+##### Parameters
+- `title`: A string containing the titlebar text.
+- `mainContent`: The main html content which is included in the body of the created box.
+- `extraClasses`: Any additional arguments will be treated as extra classes to add to the main box container. The only included extra class is [.prompt](#prompt).
 #### `confirm(text)`
 #### `prompt(text)`
 #### `select(text, options)`
