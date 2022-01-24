@@ -20,7 +20,7 @@ The core of box's functionality, this creates a draggable box with the provided 
 - `mainContent`: A string containing the main html or text content which is included in the body of the created box.
 - `extraClasses`: Any additional arguments will be treated as extra classes to add to the main box container. The only included extra class is ["prompt"](#prompt).
 #### Return value
-The box element, which is an [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element) object with some [additional member functions](additionalmemberfunctionsofboxelements).
+The box element, which is an [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element) object with some [additional member functions](#additional-member-functions-of-box-elements).
 #### Example
 ```js
 createBox("World Greeter","Hello World");
