@@ -1,7 +1,7 @@
 # box
 
 Lightweight JS+HTML+CSS draggable custom content boxes.
-
+<img src=https://user-images.githubusercontent.com/84951833/150910499-87ab35df-67fc-4d34-9eba-13a3518cf9b7.png width=400px align=right>
 #### Sections:
 - [/box/box.js](#boxboxjs) (Required)
 - [/box/css.js](#boxcssjs) (Required)
