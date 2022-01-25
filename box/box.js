@@ -11,7 +11,7 @@ let boxDragStart=(box,e)=>{
 };
 export let createBox=(title,mainContent,...extraClasses)=>{
   doc.getElementById("boxCSS")||doc.head.insertAdjacentHTML('beforeend',`<style id='boxCSS'>${css}</style>`);
-  let box=doc.body.appendChild(new Range().createContextualFragment(`<div class=${extraClasses.length>0?`"box ${extraClasses.join(" ")}"`:"box"} style=z-index:${zIndex()}><div class=title><span>${title}</span><a class=toggle></a><a class=close>;</a></div>${mainContent}</div>`).firstElementChild);
+  let box=doc.body.appendChild(new Range().createContextualFragment(`<div class=${extraClasses.length>0?`"box ${extraClasses.join(" ")}"`:"box"} style=z-index:${zIndex()}><div class=title><span>${title}</span><a class=toggle></a><a class=close></a></div>${mainContent}</div>`).firstElementChild);
 	Object.assign(box.style,{left:Math.floor(win.innerWidth/2-box.offsetWidth/2)+"px",top:Math.floor(win.innerHeight/2-box.offsetHeight/2)+"px"});
 	box.querySelector(".title").addEventListener('mousedown',e=>e.target.tagName!="A"&&boxDragStart(box,e));
 	box.querySelector(".close").addEventListener('click',e=>box["remove"]());
