@@ -150,10 +150,15 @@ Resulting HTML (Likely to be reworked):
 ```
 
 ## Additional member functions of box elements
-Documentation is WIP.
+Documentation is still WIP for this section and below.
+
+The Element returned by `createBox` has some additional member functions added to it.
 ### `box.addLogDiv(width)`
-### `box.log(text, timestamp, element=box.querySelector(".log))`
+Adds a resizable log with a specified minimum width (to prevent resizing smaller than intended).
+### `box.log(html, ts=true, elem=box.querySelector(".log))`
+Adds the specified html log entry to the specified element (default is the first .log in the box). Prepended by a timestamp by default.
 ### `box.stripTitleButtons()`
+Removes the toggle and close buttons from the title bar. Ensure you provide another way to remove the box from the document.
 ## [/box/css.js](css.js)
 A .js file containing a single export which is the css content. Imported by /box/box.js and can be edited easily using cssEdit.js.
 ### Cost
@@ -172,7 +177,26 @@ These are used for the main layout of the box and use of these class names insid
 ### `.scroller`
 ### `.g2`
 
-# [cssEdit.js](cssEdit.js)
+## [cssEdit.js](cssEdit.js)
+<img src=https://user-images.githubusercontent.com/84951833/150908757-568a624b-a51a-4257-abf9-d88fb192963a.png align=right />
+
 A script which creates a box with controls that allow editing and testing of CSS styles and ingame theme.
-## Cost
+### Cost
 1.6GB RAM cost. File size is 1.91KB.
+### Functionality
+### `Load from File`
+This button uses `ns.read` to load the content of /box/css.js and places it into the textarea.
+### `Load from Page`
+This button gets the content of the #boxCSS style element on the page and places it into the textarea.
+### `Save to File`
+This button uses `ns.write` to save the content of the textarea to /box/css.js
+### `Save to Page`
+This button saves the content of the textarea to the #boxCSS style element, allowing you to preview css changes without committing them to the save file.
+### `Load Theme from Game`
+This button uses `ns.ui` functions to get the current color theme and font, and replaces the content of the body{} portion of the css with css variables for these things.
+### `Save Theme to Game`
+This button takes the colors specified in the body tag of the textarea's css, and uses ns.ui.setTheme to edit the ingame theme to match the colors specified in the css.
+### `Minify`
+Minifies the css in the textarea using regex.
+### `Beautify`
+Beautifies the css in the textarea using regex.
