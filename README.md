@@ -13,7 +13,7 @@ The [box folder](box) contains separate documentation.<br clear=both>
 ### [deepestScan.js](deepestScan.js)
 <img src=https://user-images.githubusercontent.com/84951833/150685593-772866e3-8386-4f0e-a5bb-5a78ebf36a76.png height=300px align=left>Ram cost: 1.85GB - File size: 1.75KB
  
-Self-contained script that prints out a full map of the network server hierarchy to the terminal, with color coding and click-to-connect functionality.
+Self-contained script that prints out a full map of the network server hierarchy to the terminal, with color coding and click-to-connect functionality. There is a [alert version](deepestScan-alert.js) that prints the tree in an ns.alert box.
 
 Note that React does not preserve the additional printed content when navigating away from the terminal and back, so in this case the script needs to be re-ran to access the links again.<br clear=both>
 ### [unlock.js](unlock.js)
