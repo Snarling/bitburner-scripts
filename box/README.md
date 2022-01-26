@@ -1,5 +1,4 @@
 # box
-
 Lightweight JS+HTML+CSS draggable custom content boxes.
 <img src=https://user-images.githubusercontent.com/84951833/150910499-87ab35df-67fc-4d34-9eba-13a3518cf9b7.png width=400px align=right>
 #### Sections:
@@ -18,7 +17,7 @@ The core of box's functionality, this creates a draggable box with the provided 
 #### Parameters
 - `title`: A string containing the titlebar text content.
 - `mainContent`: A string containing the main html or text content which is included in the body of the created box.
-- `extraClasses`: Any additional arguments will be treated as extra classes to add to the main box container. The only included extra class is ["prompt"](#prompt).
+- `extraClasses`: Any additional arguments will be treated as extra classes to add to the main box container. The included class ["prompt"](#prompt) will darken the rest of the screen to grab the user's attention. The included class "min" will spawn the box in minimized mode.
 #### Return value
 The box element, which is an [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element) object with some [additional member functions](#additional-member-functions-of-box-elements).
 #### Example
@@ -166,13 +165,15 @@ No import cost. File size is 2.49KB.
 ### Reserved Classes
 Reserved classes include
 - .box
+  - The box element
 - .box .title
 - .box .close
 - .box .toggle
 
 These are used for the main layout of the box and use of these class names inside of mainContent or when adding content with [box.log](#boxlogtext-timestamp-elementboxqueryselectorlog) should be avoided.
 ### Other classes
-### `.prompt`
+### `.box.prompt`
+Creates a large transparent black border around the box, to darken the rest of the screen for attention-grabbing.
 ### `.resizer`
 ### `.scroller`
 ### `.g2`
