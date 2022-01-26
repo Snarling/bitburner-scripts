@@ -7,6 +7,8 @@ Lightweight JS+HTML+CSS draggable custom content boxes.
 - [cssEdit.js](#csseditjs) (Recommended)
 - [Other Example Files](#otherexamplefiles)
   - [promptExamples.js](#promptexamplesjs) 
+  - [deepestScan-box.js](#deepestscan-boxjs)
+  - [serverInfo.js](#serverinfojs)
 ## [/box/box.js](box.js)
 The main file which provides functionality for creating new boxes to hold your custom content. It also provides functions for creating various prompts and alerts using premade templates.
 ### Cost
@@ -24,19 +26,20 @@ The box element, which is an [Element](https://developer.mozilla.org/en-US/docs/
 ```js
 createBox("World Greeter","Hello World");
 ```
-![image](https://user-images.githubusercontent.com/84951833/150745696-3b9a521c-927a-4912-a0f5-e48569833530.png)
+![image](https://user-images.githubusercontent.com/84951833/151187701-f922e79e-2429-400b-93ee-bf0b6c1108a4.png)
 
 Resulting HTML:
 ```html
 <div class="box" style="z-index: 9001; left: 853px; top: 478px;">
   <div class="title">
     <span>World Greeter</span>
-    <a class="toggle">🗕</a>
-    <a class="close">✖</a>
+    <a class="toggle"></a>
+    <a class="close"></a>
   </div>
   Hello, world!
 </div>
 ```
+Note: The symbol used for "close" is the chrome-close glyph from the codicon font.
 ### `confirm(text)`
 Creates a yes/no confirmation prompt which can be answered using the buttons or by using keyboard y/n. The rest of the screen is dimmed to grab the player's attention until answered.
 #### Parameters
