@@ -15,7 +15,7 @@ export let createBox=(title,mainContent,...extraClasses)=>{
 	Object.assign(box.style,{left:Math.floor(win.innerWidth/2-box.offsetWidth/2)+"px",top:Math.floor(win.innerHeight/2-box.offsetHeight/2)+"px"});
 	box.querySelector(".title").addEventListener('mousedown',e=>e.target.tagName!="A"&&boxDragStart(box,e));
 	box.querySelector(".close").addEventListener('click',e=>box["remove"]());
-	box.querySelector(".toggle").addEventListener('click',e=>box.classList.toggle("min"));
+	box.querySelector(".toggle").addEventListener('click',e=>win._boxEdgeDetect(box.classList.toggle("min")));
 	box.addEventListener('mousedown',()=>box.style.zIndex=zIndex());
 	box.addEventListener('keydown',e=>e.stopPropagation());
 	box.addLogDiv=width=>box.insertAdjacentHTML('beforeEnd',`<div class=resizer style=min-width:${width}px><div class=log></div></div>`);
