@@ -12,7 +12,7 @@ Lightweight JS+HTML+CSS draggable custom content boxes.
 ## [/box/box.js](box.js)
 The main file which provides functionality for creating new boxes to hold your custom content. It also provides functions for creating various prompts and alerts using premade templates.
 ### Cost
-No import cost. File size is 4.3KB.
+No import cost. File size is 4.25KB.
 ### Exported Functions
 ### `createBox(title, mainContent, ...extraClasses)`
 The core of box's functionality, this creates a draggable box with the provided title and filled with whatever mainContent is provided.
@@ -164,16 +164,18 @@ Removes the toggle and close buttons from the title bar. Ensure you provide anot
 ## [/box/css.js](css.js)
 A .js file containing a single export which is the css content. Imported by /box/box.js and can be edited easily using cssEdit.js.
 ### Cost
-No import cost. File size is 2.49KB.
+No import cost. File size is 2.7KB.
 ### Reserved Classes
-Reserved classes include
+The following classes are used for the main layout of the box. Their use elsewhere inside of the box should be avoided.
 - .box
   - The box element
 - .box .title
+  - The titlebar
 - .box .close
+  - The close button on the titlebar 
 - .box .toggle
+  - The toggle button on the titlebar  
 
-These are used for the main layout of the box and use of these class names inside of mainContent or when adding content with [box.log](#boxlogtext-timestamp-elementboxqueryselectorlog) should be avoided.
 ### Other classes
 ### `.box.prompt`
 Creates a large transparent black border around the box, to darken the rest of the screen for attention-grabbing.
