@@ -2,7 +2,7 @@ import { alert, createSidebarItem, doc } from "/box/box.js"
 /** @param {NS} ns **/
 export async function main(ns) {
   let events={ctrl:{},alt:{}};
-  let item=createSidebarItem("keybinder",`<style></style><div class=g2></div><button>Close</button><button>Highlight</button><button>Add</button><div class=g2><span>ModKey:</span><select>${Object.keys(events).map(key=>`<option value=${key}>${key}</option>`).join("")}</select><span>Key:</span><input /><span>Elem:</span><input value='document.querySelectorAll("div.MuiButtonBase-root")[2]'/><span>Name:</span><input /></div>`,"&#xea65");
+  let item=createSidebarItem("keybinder",`<style></style><div class=g2></div><button>Close</button><button>Highlight</button><button>Add</button><div class=g2><span>ModKey:</span><select>${Object.keys(events).map(key=>`<option value=${key}>${key}</option>`).join("")}</select><span>Key:</span><input /><span>Elem:</span><input value='document.querySelectorAll("div.MuiButtonBase-root")[2]'/><span>Name:</span><input /></div>`,"\uea65");
   let keydownEvent=e=>{
     if (e.getModifierState("Control")) return events.ctrl[e.key]&&e.preventDefault()||events.ctrl[e.key]();
     else if (e.getModifierState("Alt")) return events.alt[e.key]&&e.preventDefault()||events.alt[e.key]();
