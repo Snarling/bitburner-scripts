@@ -106,5 +106,11 @@ The following context options are provided by default:
 * `"Move to Bottom"`: Moves the box Element to the bottom of the sidebar. Only shown for sidebar items.
 * `"-> sidebar"`: Turns the box Element into a sidebar item. Only shown for draggable boxes.
 * `"box <-"`: Turns the box Element into a draggable box. Only shown for sidebar items.
+
+To delete a context item, for instance to disable a sidebarItem from being able to turn into a draggable box, use one of the following options:
+```
+box.contextItems["box <-"].cFn=()=>0 //Replace the context item's existing condition function with one that will always return false
+delete box.contextItems["box <-"]; //Deletes the entire reference to the context item
+```
 ### box.addContextItem(name, fn, cFn=()=>1)
 Adds an option to box.contextItems, with a given function and conditional function. If not provided, the conditional defaults to always show the option.
