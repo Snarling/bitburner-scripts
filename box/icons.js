@@ -3,12 +3,13 @@ export let icons={};
 Object.entries(codes).forEach(([k,v])=>icons[k]=`&#xe${v}`);
 import {createBox, createSidebarItem} from "/box/box.js"
 export let main=ns=>{
-  let item=createSidebarItem("Icon Browser",`<div class=g2><span>Name:</span><select>${Object.entries(codes).map(([name,value])=>`<option value=${value}>${name}</option><`).join("")}</select><span>HTML:</span><span class=html-code>\\uea60</span><span>Icon:</span><div><span class=icon>&#xea60</span><button>Pick Icon</button></div></div>`);
-  let sel=item.querySelector("select");
+  let item=createSidebarItem("icons",`<div class=g2><span>Name:</span><select class=l>${Object.entries(codes).map(([name,value])=>`<option value=${value}>${name}</option><`).join("")}</select><span>HTML:</span><span class="html-code l">\\uea60</span><span>Icon:</span><div class=l><span class="icon">\uea60</span><button>Pick Icon</button></div></div>`,"\uea6d");
+  let sel=item.querySelector("select"), icon=item.body.querySelector(".icon");
   sel.addEventListener('change',()=>{
-    item.querySelector(".html-code").innerText="\\ue"+sel.value;
+    item.querySelector(".html-code").innerText=`\\ue${sel.value} or &amp;#xe${sel.value}`;
     item.body.querySelector(".icon").innerHTML="&#xe"+sel.value;
-  })
+  });
+  icon.addEventListener("click",()=>navigator.clipboard.writeText(icon.innerText));
   item.querySelector("button").addEventListener("click",()=>{
     let box=createBox("Select an Icon",`<div style="display:grid;grid:auto-flow 30px / repeat(25, 30px);place-items:center">${Object.entries(codes).map(([k,v])=>`<span class=icon data=${v}>&#xe${v}</span>`).join("")}</div>`,"","prompt");
     box.body.querySelectorAll(".icon").forEach(icon=>icon.addEventListener("click",()=>{
