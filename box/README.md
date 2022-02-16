@@ -1,8 +1,68 @@
-No serious documentation for sidebar version yet. See main branch for existing documentation, *most* of which is still valid. 
+# box (with sidebar)
+Adds a fixed sidebar on the right hand side of the screen, and allows custom content to be added to sidebar items or draggable boxes (which can be freely changed from one to the other). A version is available without the sidebar as well, but example scripts here are written for the sidebar version.
+## box.js
+This is the main file, and the only 100% required file. It provides the functions for creating sidebar items or boxes, various types of prompt, as well as some other minor functions. Below are the exported functions and their usage.
+### createBox(title,content,icon="\uea74",...classes)
+Creates a box with the provided title, content, titlebar icon, and and additional classes.
 
-New features include:
-* Addition of sidebar and sidebar items, which can be individually collapsed or the entire sidebar can be collapsed.
-* Boxes and sidebar items are the same HTML content and can easily be converted from one to the other.
-* The third argument for createBox or createSidebarItem is the icon character. The icons use the [`codicon` font](https://microsoft.github.io/vscode-codicons/dist/codicon.html). Normal usage would be to supply one icon as the window's icon, e.g. `&#xea79` for the beaker. The codes for each icon are listed on one of the embedded stylesheets the game uses. If no content is provided for this argument, the info icon is used.
-* Context menu added when clicking titlebar of a box or sidebar item with anything other than main mouse button. Allows switching the item between box/sidebar item, changing position on the sidebar, etc. New functions can easily be added to the context menu - see timekeeper.js for an example where "Toggle Numbers" is added as an extra context option.
-* There is a basegame bug where the monaco code editor will grow if it is given additional space, but it will never shrink itself (try collapsing and expanding the left sidebar, or growing and shrinking the window). The bug was a lot more apparent with a right sidebar added, so I added a workaround to the sidebar collapse/expand event to force the editor to recalculate the correct width. All other content fully respects the space taken by the sidebar.
+Parameter details:
+* `title`: A String containing the text (or HTML) to be displayed in the title bar.
+* `content`: A String containing the HTML content of the box.
+* `icon`: A String containing the codicon font symbol to use in the titlebar. Defaults to an info icon. Can be provided using the unicode character directly, by using a unicode escaped character `\u????`, or html entity `$#x????`. [icons.js](#iconsjs) allows previewing of all icons with provided codes, and also provides an exported list of named icons.
+* `...classes`: String arguments representing any additional classes which should be added to the box.
+#### createBox return value
+A [box `Element`](#boxelement)
+#### createBox example usage
+<img src=https://user-images.githubusercontent.com/84951833/154297398-48c35868-73aa-4dc1-b374-92430f32aded.png align=right>
+
+```
+import {createBox} from "/box/box.js"
+export async function main (ns){
+  createBox("World Greeter","<span style=color:red>Hello world</span>");
+}
+```
+### createSidebarItem(title,content,icon="\uea74",...classes)
+Creates a sidebar item using provided parameters, which are the same as createBox above.
+#### createSidebarItem return value
+A [box `Element`](#boxelement)
+#### createSidebarItem example usage
+<img src=https://user-images.githubusercontent.com/84951833/154300139-8b593ae0-24b8-4476-a87c-e4038e54051e.png width=200px align=right>
+
+```
+import {createSidebarItem} from "/box/box.js"
+export async function main (ns){
+  createSidebarItem("World Greeter","<span style=color:red>Hello world</span>");
+}
+```
+
+
+## box Element
+The following are added as members to a box Element.
+### box.head
+A reference to the `Element` containing the head/titlebar of the box Element.
+### box.body
+A reference to the `Element` containing the body/content of the box Element.
+### box.logDiv
+A reference to the `Element` that will be added to by box.log. Can be set to any element (even one that is not inside of the box).
+### box.log(html, timestamp=true)
+Adds a log entry to box.logDiv, with a timestamp (unless disabled). If box.logDiv is not defined, it is set to the first `.log` element inside of box.body and if none is found then a new resizable log will be added and used.
+
+Parameter details:
+* `html`: A String containing the HTML content of the log entry to be added.
+* `timestamp`: A boolean representing whether to include a timestamp on the log entry. Defaults to true.
+### box.toSide()
+Converts the box Element into a sidebar item.
+### box.toBox()
+Converts the box Element into a draggable box.
+### box.contextItems
+An Object containing entries for context menu options, as well as conditional functions to determine whether to display each context option.
+
+The following context options are provided by default:
+* `"Remove Item"`: Removes the box Element.
+* `"Cancel"`: Closing out of the context menu without doing anything. Can also be accomplished by clicking anywhere else on the screen.
+* `"Move to Top"`: Moves the box Element to the top of the sidebar. Only shown for sidebar items.
+* `"Move to Bottom"`: Moves the box Element to the bottom of the sidebar. Only shown for sidebar items.
+* `"-> sidebar"`: Turns the box Element into a sidebar item. Only shown for draggable boxes.
+* `"box <-"`: Turns the box Element into a draggable box. Only shown for sidebar items.
+### box.addContextItem(name, fn, cFn=()=>1)
+Adds an option to box.contextItems, with a given function and conditional function. If not provided, the conditional defaults to always show the option.
