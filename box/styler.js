@@ -5,13 +5,12 @@ export let main=async ns=>{
     for (let entry of Object.entries(shorthand)) str=str.replaceAll(entry[k],entry[v]);
     return str;
   }
-  let box=createBox('styler', `<button>Load from File</button><button>Load from Page</button><button>Save to File</button><button>Save to Page</button><div class=resizer style="height:300px"><textarea spellcheck=false></textarea></div><button>Load Theme from Game</button><button>Save Theme to Game</button><button>Minify</button><button>Beautify</button>`,"\ueb5c"),
+  let box=createBox('styler', `<button>Load from File</button><button>Load from Page</button><button>Save to File</button><button>Save to Page</button><div class=resizer style="height:300px"><textarea spellcheck=false></textarea></div><button>Load Theme from Game</button><button>Save Theme to Game</button><button>Minify</button><button>Beautify</button>`,"&#xeb5c"),
     pageCSS=sidebar.querySelector('style'),
     textArea=box.querySelector('textarea'),
     minify=css=>css.replace(/(?<=[{:;}])\s+/g, "").replace(/\s+(?={)|;(?=})/g, ""),
     beautify=css=>css.replace(/(?<=[{;}])|(?=})/g, "\n  ").replace(/\n  }\s+/g, ";\n}\n").trim();
   box.style.width="max-content";
-  delete (box.contextItems["-> sidebar"]);
   let fn={
     "Load from File":()=>textArea.value = beautify(/(?<=let css=`)[\s\S]*?(?=`)/.exec(ns.read("/box/box.js"))[0]),
     "Load from Page":()=>textArea.value = beautify(pageCSS.innerHTML),
