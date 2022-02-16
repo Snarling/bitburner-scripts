@@ -34,6 +34,34 @@ export async function main (ns){
   createSidebarItem("World Greeter","<span style=color:red>Hello world</span>");
 }
 ```
+### confirm(text)
+Creates a Yes/No confirmation box with the provided prompt text. The provided text String can include html. The Yes button is initially focused, and keyboard Y/N can also be used to select the choices.
+#### confirm example, with documentation
+```
+let choice = await confirm("This is a yes/no confirmation prompt, which returns a promise that resolves to true/false depending on your selection.<br /><br />Y and N can be used to select an option.")
+```
+![image](https://user-images.githubusercontent.com/84951833/154311125-da0358b8-051b-46a5-9f5a-a3e279369678.png)
+### prompt(text)
+Creates a text input prompt with the provided prompt text. The prompt text String can include html. The input field is initially focused and keyboard Enter in the input field can be used to submit the prompt.
+#### prompt example, with documentation
+```
+let input = await prompt("This is a text input prompt, which returns a promise that resolves to the string you type into the input field.<br /><br />In addition to the button, it can be submitted by pressing enter.")
+```
+![image](https://user-images.githubusercontent.com/84951833/154312727-73b4ce49-dce4-4e31-9601-bd6e214ad095.png)
+### select(text, options)
+Creates a selection prompt with the provided prompt text, which allows the player to pick from the provided Array of options. The select Element begins with focus; the player would need to tab over to the submit button to submit the prompt using the keyboard.
+#### select example, with documentation
+```
+let choice = await select("This is a selection prompt, which returns a promise that resolves to the selected option.",["Option 1","Option 2","Option 3","Option 4"])
+```
+![image](https://user-images.githubusercontent.com/84951833/154313532-f808e570-5f48-436c-abc9-d126076389c4.png)
+### alert(text)
+Creates an alert with the provided alert text. The provided text String can include html. The Ok button begins with focus.
+#### alert example, with documentation
+```
+let choice = await confirm("This is a yes/no confirmation prompt, which returns a promise that resolves to true/false depending on your selection.<br /><br />Y and N can be used to select an option.")
+```
+![image](https://user-images.githubusercontent.com/84951833/154314025-4c598f19-f57d-40ce-af1b-4df408ef3cda.png)
 ### Other Exports
 #### win
 A reference to window/globalThis.
