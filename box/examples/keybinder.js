@@ -1,6 +1,5 @@
-import { alert, createSidebarItem, doc } from "/box/box.js"
-/** @param {NS} ns **/
-export async function main(ns) {
+import {alert,createSidebarItem,doc} from "/box/box.js"
+export let main=ns=>{
   let events={ctrl:{},alt:{}};
   let item=createSidebarItem("keybinder",`<style></style><div class=g2></div><div class=g2><button class=r>Add</button><button class=l>Highlight</button><span class=r>ModKey:</span><select class=l>${Object.keys(events).map(key=>`<option value=${key}>${key}</option>`).join("")}</select><span class=r>Key:</span><input class=l /><span class=r>Elem:</span><input class=l value='document.querySelectorAll("div.MuiButtonBase-root")[2]'/><span class=r>Name:</span><input class=l /></div>`,"\uea65");
   let keydownEvent=e=>{

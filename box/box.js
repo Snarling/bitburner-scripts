@@ -49,39 +49,39 @@ export let createSidebarItem=(title,content,icon="",...classes)=>{
   };
   item.addContextItem=(name,fn,cFn=()=>1)=>item.contextItems[name]={fn:fn,cFn:cFn};
   item.head.querySelector(".close").addEventListener('click',e=>item["remove"]());
-	item.head.querySelector(".ud").addEventListener('click',e=>item.style.zIndex&&item.classList.toggle("c")||win._boxEdgeDetect());
+  item.head.querySelector(".ud").addEventListener('click',e=>item.style.zIndex&&item.classList.toggle("c")||win._boxEdgeDetect());
   item.body.style.height=Math.max(item.body.offsetHeight,100)+"px";
   if (item.classList.contains("prompt")) item.head.querySelectorAll(".icon").forEach(icon=>icon["remove"]());
   return item;
 };
 export let createBox=(...args)=>createSidebarItem(...args).toBox();
 export let confirm=text=>{
-	let box=createBox("Confirmation Prompt",`<div class=g2><div class=f>${text}</div><button class=r><u>Y</u>es</button><button class=l><u>N</u>o</button></div>`,"","prompt");
-	box.querySelector("button").focus();
-	box.addEventListener('keyup',e=>(e.key.toLowerCase()==="y"&&box.querySelector("button").click())||(e.key.toLowerCase()==="n"&&box.querySelectorAll("button")[1].click()));
-	return new Promise(r=>box.querySelectorAll("button").forEach((button,i)=>button.addEventListener('click',()=>box["remove"](r(i==0)))));
+  let box=createBox("Confirmation Prompt",`<div class=g2><div class=f>${text}</div><button class=r><u>Y</u>es</button><button class=l><u>N</u>o</button></div>`,"","prompt");
+  box.querySelector("button").focus();
+  box.addEventListener('keyup',e=>(e.key.toLowerCase()==="y"&&box.querySelector("button").click())||(e.key.toLowerCase()==="n"&&box.querySelectorAll("button")[1].click()));
+  return new Promise(r=>box.querySelectorAll("button").forEach((button,i)=>button.addEventListener('click',()=>box["remove"](r(i==0)))));
 };
 export let prompt=text=>{
-	let box=createBox("Input Prompt",`<div class=g2><div class=f>${text}</div><input class=r /><button class=l>Submit</button></div>`,"","prompt");
-	box.querySelector("input").focus();
-	box.querySelector("input").addEventListener('keyup',e=>e.key=='Enter'&&box.querySelector("button").click());
-	return new Promise(r=>box.querySelector("button").addEventListener('click',()=>box["remove"](r(box.querySelector("input").value))));
+  let box=createBox("Input Prompt",`<div class=g2><div class=f>${text}</div><input class=r /><button class=l>Submit</button></div>`,"","prompt");
+  box.querySelector("input").focus();
+  box.querySelector("input").addEventListener('keyup',e=>e.key=='Enter'&&box.querySelector("button").click());
+  return new Promise(r=>box.querySelector("button").addEventListener('click',()=>box["remove"](r(box.querySelector("input").value))));
 };
 export let select=(text,options)=>{
-	let box=createBox("Selection Prompt",`<div class=g2><div class=f>${text}</div><select class=r>${options.map(option=>`<option value="${option}">${option}</option>`).join("")}</select><button class=l>Submit</button></div>`,"","prompt");
-	box.querySelector("select").focus();
-	return new Promise(r=>box.querySelector("button").addEventListener('click',()=>box["remove"](r(box.querySelector("select").value))));
+  let box=createBox("Selection Prompt",`<div class=g2><div class=f>${text}</div><select class=r>${options.map(option=>`<option value="${option}">${option}</option>`).join("")}</select><button class=l>Submit</button></div>`,"","prompt");
+  box.querySelector("select").focus();
+  return new Promise(r=>box.querySelector("button").addEventListener('click',()=>box["remove"](r(box.querySelector("select").value))));
 };
 export let alert=text=>{
-	let box=createBox("Alert Message",`<div class=g2><div class=f>${text}</div><button class=f>Ok</button></div>`,"", "prompt");
-	box.querySelector("button").focus();
-	return new Promise(r=>box.querySelector("button").addEventListener('click',()=>r(box["remove"]())));
+  let box=createBox("Alert Message",`<div class=g2><div class=f>${text}</div><button class=f>Ok</button></div>`,"", "prompt");
+  box.querySelector("button").focus();
+  return new Promise(r=>box.querySelector("button").addEventListener('click',()=>r(box["remove"]())));
 };
 let contextMenu=(item,x,y)=>{
   if (item.classList.contains("prompt")) return;
   let options = Object.entries(item.contextItems).filter(([name,entry])=>entry.cFn());
-	let box=createBox("",`<div class=g2><div class=f>${item.querySelector(".title").innerText}.context</div>${options.map(([name,entry])=>`<button class=n>${name}</button>`).join("")}</div>`,"", "contextMenu");
-	box.querySelector("button").focus();
+  let box=createBox("",`<div class=g2><div class=f>${item.querySelector(".title").innerText}.context</div>${options.map(([name,entry])=>`<button class=n>${name}</button>`).join("")}</div>`,"", "contextMenu");
+  box.querySelector("button").focus();
   box.setStyle({left:Math.max(Math.min(win.innerWidth-box.offsetWidth/2,x),box.offsetWidth/2)+"px",top:Math.max(Math.min(win.innerHeight-box.offsetHeight/2,y),box.offsetHeight/2)+"px",transform:"translate(-50%, -50%)"});
   box.querySelectorAll("button").forEach(button=>button.addEventListener("click",()=>box["remove"](item.contextItems[button.innerText].fn())));
   box.addEventListener("mousedown",e=>e.stopPropagation());
