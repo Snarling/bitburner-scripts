@@ -1,3 +1,5 @@
+<img src=https://user-images.githubusercontent.com/84951833/154841925-67775777-bd77-4267-9428-e78ab4894552.png align=right width=250px>
+
 # box (with sidebar)
 Adds a fixed sidebar on the right hand side of the screen, and allows custom content to be added to sidebar items or draggable boxes (which can be freely changed from one to the other). A version is available without the sidebar as well, but example scripts here are written for the sidebar version.
 ## box.js
