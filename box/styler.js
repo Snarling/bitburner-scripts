@@ -5,23 +5,23 @@ export let main=async ns=>{
     for (let entry of Object.entries(shorthand)) str=str.replaceAll(entry[k],entry[v]);
     return str;
   }
-  let box=createBox('styler', `<button>Load from File</button><button>Load from Page</button><button>Save to File</button><button>Save to Page</button><div class=resizer style="height:300px"><textarea spellcheck=false></textarea></div><button>Load Theme from Game</button><button>Save Theme to Game</button><button>Minify</button><button>Beautify</button>`,"&#xeb5c"),
+  let box=createBox('styler', `<div class="flex nogrow"><button>Hard Load</button><button>Soft Load</button><button>Hard Save</button><button>Soft Save</button></div><textarea spellcheck=false></textarea><div class="flex nogrow"><button>Theme Load</button><button>Theme Save</button><button>Minify</button><button>Beautify</button></div>`,"\ueb5c"),
     pageCSS=sidebar.querySelector('style'),
     textArea=box.querySelector('textarea'),
     minify=css=>css.replace(/(?<=[{:;}])\s+/g, "").replace(/\s+(?={)|;(?=})/g, ""),
     beautify=css=>css.replace(/(?<=[{;}])|(?=})/g, "\n  ").replace(/\n  }\s+/g, ";\n}\n").trim();
-  box.style.width="max-content";
+  box.style.height="400px";
   let fn={
-    "Load from File":()=>textArea.value = beautify(/(?<=let css=`)[\s\S]*?(?=`)/.exec(ns.read("/box/box.js"))[0]),
-    "Load from Page":()=>textArea.value = beautify(pageCSS.innerHTML),
-    "Save to File":()=>ns.write("/box/box.js", ns.read("/box/box.js").replace(/(?<=let css=`)[\s\S]*?(?=`)/, minify(textArea.value)), "w"),
-    "Save to Page":()=>pageCSS.innerHTML = minify(textArea.value),
-    "Load Theme from Game":()=>textArea.value = beautify(minify(textArea.value).replace(/(?<=body{).*?(?=})/,Object.entries(ns.ui.getTheme()).map(([k,v])=>`--${convert(k,1)}:${v};`).join("")+`--ff:"${ns.ui.getStyles().fontFamily.replace(/,.*/,"")}"`)),
-    "Save Theme to Game":()=>ns.ui.setTheme((JSON.parse(convert((`{"`+minify(textArea.value).match(/(?<=body{).*?(?=;--ff)/)[0]+`"}`).replace(/;/g,'","').replace(/--/g,"").replace(/:/g,'":"'),0)))),
+    "Hard Load":()=>textArea.value = beautify(/(?<=let css=`)[\s\S]*?(?=`)/.exec(ns.read("/box/box.js"))[0]),
+    "Soft Load":()=>textArea.value = beautify(pageCSS.innerHTML),
+    "Hard Save":()=>ns.write("/box/box.js", ns.read("/box/box.js").replace(/(?<=let css=`)[\s\S]*?(?=`)/, minify(textArea.value)), "w"),
+    "Soft Save":()=>pageCSS.innerHTML = minify(textArea.value),
+    "Theme Load":()=>textArea.value = beautify(minify(textArea.value).replace(/(?<=body{).*?(?=;overflow)/,Object.entries(ns.ui.getTheme()).map(([k,v])=>`--${convert(k,1)}:${v};`).join("")+`--ff:"${ns.ui.getStyles().fontFamily.replace(/,.*/,"")}"`)),
+    "Theme Save":()=>ns.ui.setTheme((JSON.parse(convert((`{"`+minify(textArea.value).match(/(?<=body{).*?(?=;--ff)/)[0]+`"}`).replace(/;/g,'","').replace(/--/g,"").replace(/:/g,'":"'),0)))),
     "Minify":()=>textArea.value = minify(textArea.value),
     "Beautify":()=>textArea.value = beautify(minify(textArea.value))
   }
   box.querySelectorAll("button").forEach((button,i)=>button.addEventListener('click',fn[button.innerText]));
-  fn["Load from File"]();
+  fn["Soft Load"]();
   while (doc.body.contains(box)) await slp(1000);  
 }
