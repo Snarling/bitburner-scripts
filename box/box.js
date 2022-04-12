@@ -26,6 +26,7 @@ let createItem=(title, content, icon, ...classes)=>{
       item.logTarget.scrollTop=item.logTarget.scrollHeight;
       return logEntry;
     },
+    recalcHeight:()=>{item.style.height="";item.style.height=item.offsetHeight+"px"},
     contextItems:{},
     addContextItem:(name,fn,cFn=()=>1)=>item.contextItems[name]={fn:fn,cFn:cFn},
   });
@@ -34,7 +35,8 @@ let createItem=(title, content, icon, ...classes)=>{
   ["Cancel",()=>0],
   ["Float to Top",()=>sidebar.querySelector(".head").insertAdjacentElement("afterEnd",item),()=>item.classList.contains("sbitem")],
   ["Sink to Bottom",()=>sidebar.appendChild(item),()=>item.classList.contains("sbitem")],
-  ["Toggle Type",()=>item.toggleType()]].forEach(args=>item.addContextItem(...args));
+  ["Toggle Type",()=>item.toggleType()],
+  ["Recalculate Height",item.recalcHeight]].forEach(args=>item.addContextItem(...args));
     
   item.addEventListener('mousedown',e=>item.classList.contains("box")&&Object.assign(item.style,{zIndex:zIndex()}));
   item.head.addEventListener('mousedown',e=>{
