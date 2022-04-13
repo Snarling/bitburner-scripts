@@ -21,7 +21,7 @@ let createItem=(title, content, icon, ...classes)=>{
     toggleType:()=>["box","sbitem"].forEach(cl=>item.classList.toggle(cl)),
     logTarget:item.querySelector(".log"),
     log:(html, timestamp=true)=>{
-      if (!item.logTarget) item.logTarget=item.body.appendChild(elemFromHTML("<div class=log></div>"));
+      if (!item.logTarget || !doc.contains(item.logTarget)) item.logTarget=item.body.appendChild(elemFromHTML("<div class=log></div>"));
       let logEntry=item.logTarget.appendChild(elemFromHTML(`<p>${timestamp?ts():""} ${html}</p>`));
       item.logTarget.scrollTop=item.logTarget.scrollHeight;
       return logEntry;
