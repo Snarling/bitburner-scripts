@@ -45,7 +45,7 @@ export let createSimplebox=(title,content)=>{
     `<div class=simplebox>`+
       `<div class=head>`+
         `<span class=title>${title}</span>`+
-        `<span class=close>X<span>`+
+        `<span class=close>X</span>`+
       `</div>`+
       `<div class=body>${content}</div>`+
     `</div>`
