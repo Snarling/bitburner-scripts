@@ -3,7 +3,7 @@ if (document.head.querySelector("#simple-box-css")) document.head.querySelector(
 else document.head.insertAdjacentHTML("beforeEnd", `<style id=simple-box-css>${css}</style>`)
 
 export let createSimplebox=(title,content)=>{
-  document.body.insertAdjacentHTML("beforeEnd",`<div class=simplebox><div class=head><span class=title>${title}</span><span class=close>X<span></div><div class=body>${content}</div></div>`);
+  document.body.insertAdjacentHTML("beforeEnd",`<div class=simplebox><div class=head><span class=title>${title}</span><span class=close>X</span></div><div class=body>${content}</div></div>`);
   let simplebox = document.querySelector("body>div:last-of-type")
   simplebox.style.left=Math.floor(window.innerWidth/2-simplebox.offsetWidth/2)+"px";
   simplebox.style.top=Math.floor(window.innerHeight/2-simplebox.offsetHeight/2)+"px";
