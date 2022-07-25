@@ -1,7 +1,6 @@
 globalThis.awaitees??={};
 export function getExecWrapper(ns){
   return (script, host="home", threads=1, ...args)=>new Promise(r=>{
-    debugger;
     let id=Math.random();
     awaitees[id]={resolve:()=>{
       r(awaitees[id].returnVal)
