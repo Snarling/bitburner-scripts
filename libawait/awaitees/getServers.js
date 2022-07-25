@@ -2,4 +2,4 @@
 import {getAwaitee} from "/lib/await.js"
 
 //Written as a super-condensed main function just as an example. scan.js uses a more normal structure.
-export let main=(ns)=>getAwaitee(ns).returnVal=ns.args.map(ns.getServer);
+export let main=ns=>getAwaitee(ns).returnVal=ns.args.map(ns.getServer);
