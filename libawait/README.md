@@ -4,6 +4,6 @@ An execWrapper launches scripts similarly to `ns.exec`, but allows for the scrip
 
 An execWrapper should only be used to run awaitee scripts, otherwise the resulting promise will never be resolved.
 
-An execWrapper creates an additional argument as a first argument when running a script, and an awaitee consumes the first argument sent on initialization.
+An execWrapper sends an additional last when running a script, and an awaitee consumes the last argument on initialization. An awaitee script will consume the last argument even if it is ran via ns.run, ns.exec, or manually.
 
 When an awaitee script is finished running, awaitee.returnValue is what the execWrapper's promise resolves to.
