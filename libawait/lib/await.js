@@ -11,7 +11,7 @@ export function enableAwaiter(ns){
   });
 }
 export let enableAwaitee=ns=>{
-  let awaitee=awaitees[ns.args.shift()];
+  let awaitee=awaitees[ns.args.shift()]??{resolve:()=>0};
   ns.atExit(awaitee.resolve);
   return awaitee;
 }
