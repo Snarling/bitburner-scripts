@@ -1,6 +1,6 @@
-import {enableAwaiter} from "/lib/await.js";
+import {getExecWrapper} from "/lib/await.js";
 export async function main(ns){
-  let aExec=enableAwaiter(ns);//an awaitable exec that can be given a return value.
+  let aExec=getExecWrapper(ns);//an awaitable exec that can be given a return value.
   
   let time=performance.now();
   

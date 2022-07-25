@@ -1,5 +1,5 @@
 globalThis.awaitees??={};
-export function enableAwaiter(ns){
+export function getExecWrapper(ns){
   return (script, host="home", threads=1, ...args)=>new Promise(r=>{
     debugger;
     let id=Math.random();
@@ -10,7 +10,7 @@ export function enableAwaiter(ns){
     ns.exec(script, host, threads, id, ...args);
   });
 }
-export let enableAwaitee=ns=>{
+export let getAwaitee=ns=>{
   let awaitee=awaitees[ns.args.shift()]??{resolve:()=>0};
   ns.atExit(awaitee.resolve);
   return awaitee;
