@@ -6,11 +6,11 @@ export function getExecWrapper(ns){
       r(awaitees[id].returnVal)
       delete awaitees[id];
     }};
-    ns.exec(script, host, threads, id, ...args);
+    ns.exec(script, host, threads, ...args, id);
   });
 }
 export let getAwaitee=ns=>{
-  let awaitee=awaitees[ns.args.shift()]??{resolve:()=>0};
+  let awaitee=awaitees[ns.args.pop()]??{resolve:()=>0};
   ns.atExit(awaitee.resolve);
   return awaitee;
 }
