@@ -7,7 +7,10 @@ export function wrapExec(ns){
       r(ids[id].returnVal)
       delete ids[id];
     }};
-    if (!ns.exec(script, host, threads, ...args, id)) throw ids[id].resolve(),`Failed to execute script ${script} on ${host} with ${threads} threads.`
+    if (!ns.exec(script, host, threads, ...args, id)){
+      delete ids[id];
+      throw `aexec: Failed to execute script ${script} on ${host} with ${threads} threads.`
+    }
   });
 }
 export let getID=ns=>{
