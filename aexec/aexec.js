@@ -1,5 +1,5 @@
 globalThis.aexec??={ids:{}};
-export let ids=aexec.ids;
+let ids=aexec.ids;
 export function wrapExec(ns){
   return (script, host="home", threads=1, ...args)=>new Promise(r=>{
     let id=Math.random();
