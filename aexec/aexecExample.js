@@ -1,4 +1,4 @@
-import {wrapExec} from "/lib/await.js";
+import {wrapExec} from "/aexec/aexec.js";
 export async function main(ns){
   let aExec=wrapExec(ns);
   
