@@ -5,7 +5,7 @@ export async function main(ns){
   let time=performance.now();
   
   //awaiting a script without a return value
-  await aExec("/aexec/sleep.js");
+  await aExec("/aexec/sleep.js","home",1,3000);
   
   //normal way to use a script's return value
   let number3 = await aExec("/aexec/sendItBack.js","home",1,3);
@@ -20,4 +20,5 @@ export async function main(ns){
   ns.tprint(`${number3}.`);
   ns.tail();
   ns.print(servers);
+  await aExec("fileThatDoesntExist.js","home",1,3000);
 }
