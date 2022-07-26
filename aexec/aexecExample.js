@@ -8,11 +8,11 @@ export async function main(ns){
   await aExec("/aexec/sleep.js");
   
   //normal way to use a script's return value
-  let number3 = await aExec("/aexec/returnNumber.js","home",1,3));
+  let number3 = await aExec("/aexec/sendItBack.js","home",1,3));
   
   //return value can also be used for a then-chain.
-  let servers=await aExec("/awaitees/scan.js")
-    .then(hosts=>aExec("/awaitees/getServers.js","home",1,...hosts));
+  let servers=await aExec("/aexec/scan.js")
+    .then(hosts=>aExec("/aexec/getServers.js","home",1,...hosts));
   
   time=performance.now()-time;
   
