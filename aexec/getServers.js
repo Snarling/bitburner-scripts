@@ -1,3 +1,6 @@
-//Written as a super-condensed main function just as an example. Other example scripts are in a more normal structure.
+//Take list of server names as args, return array of associated server objects
 import {getID} from "/aexec/aexec.js";
-export let main=ns=>getID(ns).returnVal=ns.args.map(ns.getServer);
+export let main=ns=>{
+  let id=getID(ns);
+  id.returnVal=id.args.map(ns.getServer);
+}
