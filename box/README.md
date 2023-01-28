@@ -91,6 +91,39 @@ A reference to the `Element` that box.log will use. Does not have to be set, but
 ### box.log(html, timestamp=true)
 Adds a log entry to box.logDiv, with a timestamp (unless disabled). If box.logDiv is not defined, it is set to the first `.log` Element inside of box.body and if none is found then a new resizable log will be added and used.
 
+Sample function overidding print and clear log to use box instead of tail window
+```
+const pinned = `Spending on '${toBuy}'. Will check in every ${ns.tFormat(interval)}. Reserving ${options['reserve-buffer']}`
+boxTailSingleton(ns, 'hacknet', '🖳', '100px', `<div>${pinned}</div>`);
+function boxTailSingleton(ns, title, icon, height, pinned = "<div/>") {
+	var res = [];
+	sidebar.querySelectorAll('div.sbitem').forEach(sbitem => res.push({ sbitem, title: sbitem.querySelector('div.head > span').innerText }));
+	let box = res.find(o => o.title === title);
+	if (box) {
+		box = box.sbitem;
+	} else {
+		box = createSidebarItem(title, pinned, icon);
+	}
+	if (height) box.style.height = height;
+
+	const _clearLog = ns.clearLog;
+	ns.clearLog = () => {
+		_clearLog();
+		box.logDiv = box.body.querySelector('div.log');
+		if (box.logDiv) box.logDiv.replaceChildren([]);
+	}
+	const logEntryLimit = 500;
+	const _print = ns.print;
+	ns.print = (m) => {
+		box.log(`<span>${m}</span>`);
+		_print(m);
+		box.logDiv = box.body.querySelector('div.log');
+		while (box.logDiv.children.length > logEntryLimit) box.logDiv.children[0].remove();
+	}
+}
+```
+
+
 Parameter details:
 * `html`: A String containing the HTML content of the log entry to be added.
 * `timestamp`: A boolean representing whether to include a timestamp on the log entry. Defaults to true.
