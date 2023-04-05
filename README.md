@@ -1,5 +1,5 @@
 # bitburner-scripts
-Various ingame scripts for the game Bitburner, which is available for free on steam or at https://danielyxie.github.io/bitburner/
+Various ingame scripts for the game Bitburner, which is available for free on steam or at https://bitburner-official.github.io/bitburner-src/ (web link is development branch)
 
 #### Sections:
 - [box](#box)
